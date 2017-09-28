@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Matricular Alumnos</title>
+        <link rel="stylesheet" href="estilos.css" type="text/css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script src="alumnos.js" type="text/javascript"></script>
+        <script src="grupos.js" type="text/javascript"></script>
+
+        <div>
+            <h1>Nombre grupo</h1>
+            <p>Nombre grupo: <input type="text" id="nombreGrupo"> </p>
+            <p>Año grupo: <input type="text" id="anoGrupo"></p>
+            <input type="button" id="crearGrupo" value="crear grupo" onclick="ejecutarGrupo()">
+        </div>
+        <div>
+            <h1>Nombre alumno</h1>
+            <p>Nombre alumno: <input type="text" id="nombreAlumno"></p>
+            <p>Edad alumno: <input type="text" id="edadAlumno"></p>
+            <p>Ciudad alumno: <input type="text" id="ciudadAlumno"></p>
+            <input type="button" id="crearAlumno" value="crear alumno y matricular" onclick="ejecutarAlumno()">
+        </div>
+        <div>
+            <h1>Ver grupo</h1>
+            <input type="button" id="verAlumnos" value="verAlumnos" onclick="verAlumnos()">
+            <div id="tablaDatos">
+
+            </div>
+        </div>
+
+
+
+        <script>
+            var grupo;
+            function ejecutarGrupo() {
+                grupo = new crearGrupo();
+            }
+
+            function ejecutarAlumno() {
+                var alumno = new crearAlumno();
+                grupo.matricular(alumno);
+            }
+            function verAlumnos() {
+                document.getElementById("tablaDatos").innerHTML = JSON.stringify(grupo.alumnosMatriculados);
+            }
+
+        </script>
+    </body>
+</html>
