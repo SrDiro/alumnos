@@ -29,19 +29,28 @@ and open the template in the editor.
             <input type="button" id="crearAlumno" value="crear alumno y matricular" onclick="ejecutarAlumno()">
         </div>
         <div>
-            <h1>Ver grupo</h1>
-            <input type="button" id="verAlumnos" value="verAlumnos" onclick="verAlumnos()">
+            <br>
+            <input type="button" id="verAlumnos" value="ver alumnos" onclick="crearTabla()">
             <div id="tablaDatos">
-
+                <table id="datosGrupo">
+                    <tr>
+                        <td>GRUPO</td>
+                        <td>AÑO</td>
+                    </tr>
+                </table>
+                <br>
+                <table id="tabla">
+                    <tr>
+                        <td>NOMBRE</td>
+                        <td>EDAD</td>
+                        <td>CIUDAD</td>                        
+                    </tr>
+                </table>
             </div>
         </div>
-        <div>
-            
-        </div>
-
-
         <script>
             var grupo;
+            var i = 0;
             function ejecutarGrupo() {
                 grupo = new crearGrupo();
             }
@@ -50,8 +59,45 @@ and open the template in the editor.
                 var alumno = new crearAlumno();
                 grupo.matricular(alumno);
             }
-            function verAlumnos() {
-                document.getElementById("tablaDatos").innerHTML = JSON.stringify(grupo.alumnosMatriculados);
+
+            function crearTabla() {
+                if (i === 0) {
+                    var trGrupo = document.createElement("tr");
+                    trGrupo.id = "trGrupo";
+                    document.getElementById("datosGrupo").appendChild(trGrupo);
+
+                    var tdNombreGrupo = document.createElement("td");
+                    tdNombreGrupo.innerHTML = document.getElementById("nombreGrupo").value;
+                    document.getElementById("trGrupo").appendChild(tdNombreGrupo);
+
+                    var tdAnoGrupo = document.createElement("td");
+                    tdAnoGrupo.innerHTML = document.getElementById("anoGrupo").value;
+                    document.getElementById("trGrupo").appendChild(tdAnoGrupo);
+                    
+                }
+
+
+                for (i; i < grupo.alumnosMatriculados.length; i++) {
+                    var trAlumno = document.createElement("tr");
+                    trAlumno.id = "filaTabla" + i;
+                    document.getElementById("tabla").appendChild(trAlumno);
+
+
+                    var tdNombre = document.createElement("td");
+                    tdNombre.id = "nombre" + i;
+                    tdNombre.innerHTML = grupo.alumnosMatriculados[i].nombreAlumno;
+                    document.getElementById("filaTabla" + i).appendChild(tdNombre);
+
+                    var tdEdad = document.createElement("td");
+                    tdNombre.id = "edad" + i;
+                    tdEdad.innerHTML = grupo.alumnosMatriculados[i].edadAlumno;
+                    document.getElementById("filaTabla" + i).appendChild(tdEdad);
+
+                    var tdCiudad = document.createElement("td");
+                    tdNombre.id = "ciudad" + i;
+                    tdCiudad.innerHTML = grupo.alumnosMatriculados[i].ciudadAlumno;
+                    document.getElementById("filaTabla" + i).appendChild(tdCiudad);
+                }
             }
 
         </script>

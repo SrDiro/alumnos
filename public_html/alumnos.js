@@ -9,3 +9,5 @@ function crearAlumno() {
     this.edadAlumno = document.getElementById("edadAlumno").value;
     this.ciudadAlumno = document.getElementById("ciudadAlumno").value;
 }
+
+
