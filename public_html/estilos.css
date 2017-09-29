@@ -12,3 +12,9 @@ div{
     top:15px;
     left: 25px;
 }
+
+#celdaGrupo, #celdaAlumno{
+    display: table-cell;
+    border: solid 1px;
+    font-weight: bold;
+}
